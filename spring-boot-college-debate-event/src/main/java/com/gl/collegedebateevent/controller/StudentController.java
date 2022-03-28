@@ -30,7 +30,6 @@ public class StudentController {
 
 	@PostMapping("/register")
 	public String registerStudent(Student student) {
-		System.out.println("Register- " + student.toString());
 		Student newStudent = null;
 		if (student.getStudentId() == 0) {
 			newStudent = new Student(student.getName(), student.getDepartment(), student.getCountry());

@@ -50,6 +50,7 @@ public class CollegeDebateEventWebApplication implements CommandLineRunner {
 		user.setPassword(bCryptPassEncoder.encode("user123"));
 		user.setRoles(new ArrayList<Role>(Arrays.asList(userRole)));
 
+		// To avoid entering redundant entries
 		ExampleMatcher matcher = ExampleMatcher.matchingAny().withMatcher("username",
 				ExampleMatcher.GenericPropertyMatchers.exact());
 
@@ -57,6 +58,7 @@ public class CollegeDebateEventWebApplication implements CommandLineRunner {
 		List<User> users = userRepository.findAll(Example.of(user, matcher));
 		System.out.println("Admin users present in database = " + adminUsers.size());
 		System.out.println("Non-admin users present in database = " + adminUsers.size());
+
 		if (adminUsers.size() == 0 && users.size() == 0)
 			userRepository.saveAll(new ArrayList<>(Arrays.asList(adminUser, user)));
 		else {
